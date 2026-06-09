@@ -38,6 +38,7 @@ class FactoryController extends Controller
         $factory = Factory::create($validated);
 
         return response()->json([
+            'message' => 'Factory created successfully.',
             'data' => $factory,
         ], 201);
     }
@@ -48,6 +49,7 @@ class FactoryController extends Controller
     public function show(Factory $factory)
     {
         return response()->json([
+
             'data' => $factory,
         ], 200);
     }
@@ -70,6 +72,7 @@ class FactoryController extends Controller
         $factory->update($validated);
 
         return response()->json([
+            'message' => 'Factory updated successfully.',
             'data' => $factory,
         ], 200);
 
