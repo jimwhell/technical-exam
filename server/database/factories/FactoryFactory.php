@@ -6,9 +6,7 @@ use App\Models\Factory as ModelsFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * Factory class used to generate fake Factory data
- * for database seeding and testing.
- *
+ * Factory class used to generate fake Factory data.
  * @extends Factory<Factory>
  */
 class FactoryFactory extends Factory
