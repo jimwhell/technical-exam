@@ -49,7 +49,6 @@ class FactoryController extends Controller
     public function show(Factory $factory)
     {
         return response()->json([
-
             'data' => $factory,
         ], 200);
     }
