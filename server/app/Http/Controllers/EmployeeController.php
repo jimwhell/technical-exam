@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Returns a list of all employees.
      */
-    public function index() {
+    public function index()
+    {
 
-        
+        $employees = Employee::paginate(10);
 
+        return response()->json($employees, 200);
 
     }
 

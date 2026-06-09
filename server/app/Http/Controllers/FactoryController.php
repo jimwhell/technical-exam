@@ -9,7 +9,7 @@ use App\Models\Factory;
 class FactoryController extends Controller
 {
     /**
-     * Returns the list of all factories.
+     * Returns a list of all factories.
      */
     public function index()
     {
