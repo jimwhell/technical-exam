@@ -57,7 +57,7 @@ class FactoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified factory in storage.
      */
     public function update(UpdateFactoryRequest $request, Factory $factory)
     {
@@ -70,10 +70,14 @@ class FactoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified factory from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Factory $factory)
     {
-        //
+
+        $factory->delete();
+
+        return response()->noContent();
+
     }
 }
