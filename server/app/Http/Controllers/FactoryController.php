@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFactoryRequest;
 use App\Models\Factory;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,10 @@ class FactoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFactoryRequest $request)
     {
-        //
+        $factory = Factory::create($request->validated());
+        return response()->json($factory, 201);
     }
 
     /**
