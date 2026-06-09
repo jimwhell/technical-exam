@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreFactoryRequest extends FormRequest
+class UpdateFactoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class StoreFactoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'factory_name' => ['required', 'string', 'max:255'],
-            'location' => ['required', 'string', 'max:255'],
-            'email' => ['nullable', 'email', 'max:255', Rule::unique('factories', 'email')],
-            'website' => ['nullable', 'url', 'max:255'],
+            'factory_name' => ['sometimes', 'required', 'string', 'max:255'],
+            'location' => ['sometimes', 'required', 'string', 'max:255'],
+            'email' => ['sometimes', 'nullable', 'email', 'max:255', Rule::unique('factories', 'email')->ignore($this->route('factory'))],
+            'website' => ['sometimes', 'nullable', 'url', 'max:255'],
         ];
     }
 }
