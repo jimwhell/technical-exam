@@ -13,7 +13,11 @@ class FactoryController extends Controller
     public function index()
     {
 
-       
+        $factories = Factory::all();
+
+        return response()->json([
+            'data' => $factories,
+        ], 200);
 
     }
 
