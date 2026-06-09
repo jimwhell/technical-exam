@@ -37,7 +37,9 @@ class FactoryController extends Controller
         $validated = $request->validated();
         $factory = Factory::create($validated);
 
-        return response()->json($factory, 201);
+        return response()->json([
+            'data' => $factory,
+        ], 201);
     }
 
     /**
@@ -80,6 +82,7 @@ class FactoryController extends Controller
     {
 
         $factory->delete();
+
         return response()->noContent();
 
     }
