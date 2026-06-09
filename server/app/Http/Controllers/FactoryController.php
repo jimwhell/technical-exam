@@ -86,7 +86,9 @@ class FactoryController extends Controller
 
         $factory->delete();
 
-        return response()->noContent();
+        return response()->json([
+            'message' => 'Factory deleted successfully.',
+        ], 200);
 
     }
 }
