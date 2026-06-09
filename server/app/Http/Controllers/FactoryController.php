@@ -9,7 +9,7 @@ use App\Models\Factory;
 class FactoryController extends Controller
 {
     /**
-     * Displays the list of all factories.
+     * Returns the list of all factories.
      */
     public function index()
     {
@@ -41,11 +41,13 @@ class FactoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Get a specific factory.
      */
-    public function show(string $id)
+    public function show(Factory $factory)
     {
-        //
+        return response()->json([
+            'data' => $factory,
+        ], 200);
     }
 
     /**
@@ -65,7 +67,9 @@ class FactoryController extends Controller
         $validated = $request->validated();
         $factory->update($validated);
 
-        return response()->json($factory, 200);
+        return response()->json([
+            'data' => $factory,
+        ], 200);
 
     }
 
@@ -76,7 +80,6 @@ class FactoryController extends Controller
     {
 
         $factory->delete();
-
         return response()->noContent();
 
     }
