@@ -41,7 +41,7 @@ class FactoryController extends Controller
     }
 
     /**
-     * Get a specific factory.
+     * Returns a specific factory.
      */
     public function show(Factory $factory)
     {

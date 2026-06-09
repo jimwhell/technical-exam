@@ -36,11 +36,15 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Returns a specific employee.
      */
-    public function show(string $id)
+    public function show(Employee $employee)
     {
-        //
+
+        return response()->json([
+            'data' => $employee,
+        ], 200);
+
     }
 
     /**
