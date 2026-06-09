@@ -13,11 +13,9 @@ class FactoryController extends Controller
     public function index()
     {
 
-        $factories = Factory::all();
+        $factories = Factory::paginate(10);
 
-        return response()->json([
-            'data' => $factories,
-        ], 200);
+        return response()->json($factories, 200);
 
     }
 
