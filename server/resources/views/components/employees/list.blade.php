@@ -30,11 +30,7 @@
 
         </button>
         {{-- create-employee-btn:end --}}
-   </div>
-
-           
-
-           
+   </div>           
 
            {{-- table:start --}}
             <div class="relative overflow-x-auto rounded-box border border-base-content/5 bg-base-100 min-h-96">
@@ -62,5 +58,13 @@
                 </table>
             </div>
           {{-- table:end --}}
+
+          {{-- pagination:start --}}
+          <div id="pagination" class="join flex justify-center mt-4">
+            
+          </div>
+          {{-- pagination:end --}}
+
+
 </div>
 {{-- list:end --}}

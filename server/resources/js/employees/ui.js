@@ -51,3 +51,17 @@ export const renderErrorState = (message) => {
         </tr>
     `;
 };
+
+export const renderPagination = (meta) => {
+    const { current_page, last_page } = meta;
+
+    const paginationEl = document.getElementById("pagination");
+    let buttons = "";
+
+    for (let page = 1; page <= last_page; page++) {
+        const isActive = page === current_page ? "btn-active" : "";
+        buttons += `<button class="join-item btn ${isActive} p-4 text-black" data-page="${page}">${page}</button>`;
+    }
+
+    paginationEl.innerHTML = buttons;
+};
