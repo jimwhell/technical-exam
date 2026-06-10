@@ -10,6 +10,8 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $table = 'employees';
+
     protected $fillable = [
         'firstname',
         'lastname',
@@ -18,8 +20,8 @@ class Employee extends Model
         'phone',
     ];
 
-    public function factory(): BelongsTo
+    public function assignedFactory(): BelongsTo
     {
-        return $this->belongsTo(Factory::class);
+        return $this->belongsTo(Factory::class, 'factory_id', 'id');
     }
 }

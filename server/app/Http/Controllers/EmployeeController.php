@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 
 class EmployeeController extends Controller
@@ -14,9 +15,9 @@ class EmployeeController extends Controller
     public function index()
     {
 
-        $employees = Employee::paginate(10);
+        $employees = Employee::with('assignedFactory')->paginate(10);
 
-        return response()->json($employees, 200);
+        return EmployeeResource::collection($employees);
 
     }
 
