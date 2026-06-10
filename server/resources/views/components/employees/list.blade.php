@@ -9,7 +9,7 @@
         id="search"        
         type="text"
         placeholder="Search employee"
-        class="border rounded px-4 py-2"
+        class="border rounded px-4 py-2 text-black "
         >
         {{-- searchbar:end --}}
 

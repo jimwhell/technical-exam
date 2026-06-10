@@ -6,16 +6,19 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
     /**
      * Returns a list of all employees.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $employees = Employee::with('assignedFactory')->paginate(10);
+        $employees = Employee::with('assignedFactory')
+            ->when($request->search, fn ($query) => $query->search($request->search))
+            ->paginate(10);
 
         return EmployeeResource::collection($employees);
 
