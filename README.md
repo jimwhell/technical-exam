@@ -2,7 +2,7 @@
  
 1. Clone the repository and navigate into the project folder:
 ```bash
-cd server
+cd employee-management-system
 ```
  
 2. Install dependencies:
@@ -42,4 +42,5 @@ Go to [http://localhost:8000/login](http://localhost:8000/login) and log in with
  
 - **Email:** admin@admin.com
 - **Password:** password
-You will be redirected to the dashboard at `/dashboard` for the employees table.
+
+- You will be redirected to the dashboard at `/dashboard` for the employees table.
