@@ -9,6 +9,9 @@ class EmployeeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
+     * Only the assigned factory's name is exposed instead of the
+     * entire Factory model since the current client view only
+     * requires a human-readable identifier.
      *
      * @return array<string, mixed>
      */
