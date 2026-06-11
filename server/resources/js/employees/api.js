@@ -15,9 +15,32 @@ export const getEmployees = async (search = "", page = 1) => {
     return response.json();
 };
 
+export const getEmployee = async (id) => {
+    const response = await fetch(`/api/employees/${id}`);
+
+    if (!response.ok) throw new Error(response.statusText);
+
+    return response.json();
+};
+
 export const createEmployee = async (payload) => {
     const response = await fetch("/api/employees", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+        const { errors } = await response.json();
+        throw { status: response.status, errors };
+    }
+
+    return response.json();
+};
+
+export const updateEmployee = async (id, payload) => {
+    const response = await fetch(`/api/employees/${id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
     });

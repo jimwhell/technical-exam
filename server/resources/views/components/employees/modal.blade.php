@@ -2,54 +2,69 @@
 <dialog id="employeeModal" class="modal">
     <div class="modal-box">
 
-        <h3 class="text-lg font-bold mb-4">Add Employee</h3>
+        {{-- title:start --}}
+        <h3 id="modalTitle" class="text-lg font-bold mb-4">
+            Add Employee
+        </h3>
+        {{-- title:end --}}
 
-        <form id="employeeForm" class="flex flex-col gap-7 px-2 py-3">
+        {{-- form-wrapper:start --}}
+        <div class="relative">
 
-            <div class="flex flex-col gap-1">
-                <input id="firstname" type="text" placeholder="First Name" class="input input-bordered w-full" required />
-                <span id="error-firstname" class="hidden text-error text-sm"></span>
+            {{-- loading-overlay:start --}}
+        <div id="modalLoadingOverlay" class="hidden absolute inset-0 bg-base-200 z-10 flex items-center justify-center">
+                <span class="loading loading-spinner loading-lg"></span>
             </div>
+            {{-- loading-overlay:end --}}
 
-            <div class="flex flex-col gap-1">
-                <input id="lastname" type="text" placeholder="Last Name" class="input input-bordered w-full" required />
-                <span id="error-lastname" class="hidden text-error text-sm"></span>
-            </div>
+            <form id="employeeForm" class="flex flex-col gap-7 px-2 py-3">
 
-            <div class="flex flex-col gap-1">
-                <input id="email" type="email" placeholder="Email" class="input input-bordered w-full" />
-                <span id="error-email" class="hidden text-error text-sm"></span>
-            </div>
+                <div class="flex flex-col gap-1">
+                    <input id="firstname" type="text" placeholder="First Name" class="input input-bordered w-full" required />
+                    <span id="error-firstname" class="hidden text-error text-sm"></span>
+                </div>
 
-            <div class="flex flex-col gap-1">
-                <input id="phone" type="text" placeholder="Phone" class="input input-bordered w-full" />
-                <span id="error-phone" class="hidden text-error text-sm"></span>
-            </div>
+                <div class="flex flex-col gap-1">
+                    <input id="lastname" type="text" placeholder="Last Name" class="input input-bordered w-full" required />
+                    <span id="error-lastname" class="hidden text-error text-sm"></span>
+                </div>
 
-            {{-- factory-dropdown:start --}}
-            <div class="flex flex-col gap-1">
-                <select class="w-full select select-bordered" id="factories-dropdown" required>
-                    <option value="" disabled selected>Assign factory</option>
-                </select>
-                <span id="error-factory_id" class="hidden text-error text-sm"></span>
-            </div>
-            {{-- factory-dropdown:end --}}
+                <div class="flex flex-col gap-1">
+                    <input id="email" type="email" placeholder="Email" class="input input-bordered w-full" />
+                    <span id="error-email" class="hidden text-error text-sm"></span>
+                </div>
 
-            {{-- general-error:start --}}
-            <span id="error-general" class="hidden text-error text-sm"></span>
-            {{-- general-error:end --}}
+                <div class="flex flex-col gap-1">
+                    <input id="phone" type="text" placeholder="Phone" class="input input-bordered w-full" />
+                    <span id="error-phone" class="hidden text-error text-sm"></span>
+                </div>
 
-            {{-- actions:start --}}
-            <div class="modal-action">
-                <button type="button" id="cancelBtn" class="btn">Cancel</button>
-            <button type="submit" id="submitBtn" class="btn btn-primary">
-                <span id="submitText">Save</span>
-                <span id="submitSpinner" class="loading loading-spinner loading-sm hidden"></span>
-            </button>
-            </div>
-            {{-- actions:end --}}
+                {{-- factory-dropdown:start --}}
+                <div class="flex flex-col gap-1">
+                    <select class="w-full select select-bordered" id="factories-dropdown" required>
+                        <option value="" disabled selected>Assign factory</option>
+                    </select>
+                    <span id="error-factory_id" class="hidden text-error text-sm"></span>
+                </div>
+                {{-- factory-dropdown:end --}}
 
-        </form>
+                {{-- general-error:start --}}
+                <span id="error-general" class="hidden text-error text-sm"></span>
+                {{-- general-error:end --}}
+
+                {{-- actions:start --}}
+                <div class="modal-action">
+                    <button type="button" id="cancelBtn" class="btn">Cancel</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary">
+                        <span id="submitText">Save</span>
+                        <span id="submitSpinner" class="loading loading-spinner loading-sm hidden"></span>
+                    </button>
+                </div>
+                {{-- actions:end --}}
+
+            </form>
+        </div>
+        {{-- form-wrapper:end --}}
 
     </div>
 

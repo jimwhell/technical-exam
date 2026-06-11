@@ -146,10 +146,24 @@ export const setSubmitLoading = (isLoading) => {
     document.getElementById("submitBtn").disabled = isLoading;
 };
 
-export const showSuccess = (message) => {
+export const showSuccessToast = (message) => {
     iziToast.success({
         message,
         position: "bottomRight",
         timeout: 2000,
     });
+};
+
+export const showErrorToast = (message) => {
+    iziToast.error({
+        message,
+        position: "bottomRight",
+        timeout: 2000,
+    });
+};
+
+export const setModalLoading = (isLoading) => {
+    const overlay = document.getElementById("modalLoadingOverlay");
+
+    overlay.classList.toggle("hidden", !isLoading);
 };
