@@ -77,8 +77,14 @@ export const renderErrorState = (message) => {
  * @param {number} meta.last_page - The total number of pages.
  */
 export const renderPagination = (meta) => {
-    const { current_page, last_page } = meta;
     const paginationEl = document.getElementById("pagination");
+
+    if (!meta) {
+        paginationEl.innerHTML = "";
+        return;
+    }
+
+    const { current_page, last_page } = meta;
     let buttons = "";
 
     for (let page = 1; page <= last_page; page++) {

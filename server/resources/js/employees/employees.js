@@ -47,9 +47,10 @@ const loadEmployees = async (search = "", page = 1) => {
             renderEmptyState();
         } else {
             renderEmployeesList(response.data);
-            renderPagination(response.meta);
-            attachPaginationListeners(search);
         }
+
+        renderPagination(response.data.length === 0 ? null : response.meta);
+        attachPaginationListeners(search);
     } catch {
         renderErrorState("Failed to fetch employees, please try again later.");
     }
