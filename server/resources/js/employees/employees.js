@@ -1,12 +1,16 @@
-import { getEmployees } from "./api";
+import { getEmployees, createEmployee, getFactoriesDropdown } from "./api";
 import {
     renderEmployeesList,
     renderEmptyState,
     renderErrorState,
     renderPagination,
+    renderFactoriesDropdown,
+    renderFormError,
+    clearFormError,
 } from "./ui";
 
 let debounceTimer;
+const modal = document.getElementById("employeeModal");
 
 /**
  * Load employees from the API and render the appropriate state.
@@ -28,10 +32,35 @@ const loadEmployees = async (search = "", page = 1) => {
             attachPaginationListeners(search);
         }
     } catch {
-        renderErrorState("Failed to fetch employees, please try again.");
+        renderErrorState("Failed to fetch employees, please try again later.");
     }
 
     setLoading(false);
+};
+
+const handleCreateEmployee = async (event) => {
+    event.preventDefault();
+
+    clearFormError(); // Clear existing form errors upon new submissions
+
+    const employeeForm = document.getElementById("employeeForm");
+
+    const payload = {
+        firstname: document.getElementById("firstname").value,
+        lastname: document.getElementById("lastname").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        factory_id: document.getElementById("factories-dropdown").value,
+    };
+
+    try {
+        await createEmployee(payload);
+        modal.close();
+        employeeForm.reset();
+        loadEmployees();
+    } catch (error) {
+        renderFormError(error);
+    }
 };
 
 /**
@@ -65,6 +94,20 @@ const onSearch = (e) => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => loadEmployees(e.target.value, 1), 300);
 };
+
+const populateFactoriesDropdown = async () => {
+    const { data } = await getFactoriesDropdown();
+    renderFactoriesDropdown(data);
+};
+
+document.getElementById("addEmployee").addEventListener("click", async () => {
+    modal.showModal();
+    await populateFactoriesDropdown();
+});
+
+document
+    .getElementById("employeeForm")
+    .addEventListener("submit", handleCreateEmployee);
 
 document.getElementById("search").addEventListener("input", onSearch);
 loadEmployees();

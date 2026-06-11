@@ -13,6 +13,7 @@
     <div class="py-6 ">
         <div class="max-w-7xl mx-auto px-4">
             <x-employees.list/>
+            <x-employees.modal/>
         </div>
 
     </div>

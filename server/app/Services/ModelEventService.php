@@ -6,9 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Service for logging employee and factory model lifecycle events (created, updated, deleted).
+ */
 class ModelEventService
 {
-    public function log(string $model, string $action, Model $modelInstance, array $old = [], array $new = [])
+    /**
+     * Log a model event with contextual information.
+     *
+     * For update events, old and new values are included in the log context
+     * to provide a diff of what changed.
+     *
+     * @param  string  $model  - The model class name being acted on.
+     * @param  string  $action  - The event type (created, updated, deleted).
+     * @param  Model  $modelInstance  - The actual model instance.
+     * @param  array  $old  - The attribute values before the update.
+     * @param  array  $new  - The attribute values after the update.
+     */
+    public function log(string $model, string $action, Model $modelInstance, array $old = [], array $new = []): void
     {
         $context = [
             'model' => $model,

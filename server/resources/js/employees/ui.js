@@ -68,3 +68,53 @@ export const renderPagination = (meta) => {
 
     paginationEl.innerHTML = buttons;
 };
+
+export const renderFactoriesDropdown = (factories) => {
+    const select = document.getElementById("factories-dropdown");
+
+    factories.forEach(({ id, factory_name }) => {
+        select.innerHTML += `<option value="${id}">${factory_name}</option>`;
+    });
+};
+
+const fieldErrorMessages = {
+    firstname: "Please enter a valid first name.",
+    lastname: "Please enter a valid last name.",
+    factory_id: "Please assign a factory.",
+    email: "Please enter a valid email address.",
+    phone: "Please enter a valid phone number.",
+};
+
+/**
+ * Render form errors — inline per field for validation errors, general for server errors.
+ *
+ * @param {object} error - Error object from the API.
+ */
+export const renderFormError = (error) => {
+    if (error.status === 422 && error.errors) {
+        Object.keys(error.errors).forEach((field) => {
+            const el = document.getElementById(`error-${field}`);
+            if (el) {
+                el.textContent =
+                    fieldErrorMessages[field] ?? error.errors[field][0];
+                el.classList.remove("hidden");
+            }
+        });
+    } else {
+        const el = document.getElementById("error-general");
+        if (el) {
+            el.textContent = "Something went wrong, please try again later.";
+            el.classList.remove("hidden");
+        }
+    }
+};
+
+/**
+ * Clear all form errors.
+ */
+export const clearFormError = () => {
+    document.querySelectorAll("[id^='error-']").forEach((el) => {
+        el.textContent = "";
+        el.classList.add("hidden");
+    });
+};

@@ -18,7 +18,7 @@
         <button
         id="addEmployee"
         type="button"
-        class="px-4 py-2 rounded flex items-center gap-2"
+        class="px-4 py-2 rounded flex items-center gap-2 text-black"
         >
         <span>Add employee</span>
         <svg 
@@ -41,9 +41,6 @@
                 </div>
                 {{-- spinner overlay:end --}}
 
-                
-               
-
                 <table class="table">
                     <thead>
                         <tr>
@@ -64,6 +61,26 @@
             
           </div>
           {{-- pagination:end --}}
+
+          
+          {{-- create-modal:start --}}
+          {{-- <dialog id="createModal" class="modal">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg mb-4">Add Employee</h3>
+                <div class="flex flex-col gap-3">
+                    <input id="firstname" type="text" placeholder="First name" class="input input-bordered" />
+                    <input id="lastname" type="text" placeholder="Last name" class="input input-bordered" />
+                    <input id="factory" type="text" placeholder="Factory" class="input input-bordered" />
+                    <input id="email" type="email" placeholder="Email" class="input input-bordered" />
+                    <input id="phone" type="text" placeholder="Phone" class="input input-bordered" />
+                </div>
+        <div class="modal-action">
+            <button id="cancelBtn" class="btn">Cancel</button>
+            <button id="submitBtn" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+        </dialog> --}}
+        {{-- create-modal:end --}}
 
 
 </div>
