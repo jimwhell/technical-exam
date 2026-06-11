@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class EmployeeSeeder extends Seeder
 {
-    // TODO: Fix employee seeder not being detected when running seeds.
+    
 
     /**
      * Run the database seeds.
