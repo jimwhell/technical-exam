@@ -18,6 +18,8 @@ import {
     showSuccessToast,
     showErrorToast,
     setModalLoading,
+    setDeleteLoading,
+    confirmAction,
 } from "./ui";
 
 let debounceTimer;
@@ -140,13 +142,21 @@ const handleSubmitEmployee = async (event) => {
 };
 
 const handleDeleteEmployee = async (id) => {
-    if (!confirm("Are you sure you want to delete this employee?")) return;
+    const confirmed = await confirmAction(
+        "Delete Employee?",
+        "This action cannot be undone.",
+    );
+
+    if (!confirmed) return;
+
+    setDeleteLoading(id, true);
 
     try {
         await deleteEmployee(id);
         showSuccessToast("Employee deleted successfully.");
         loadEmployees(currentSearch, currentPage);
     } catch {
+        setDeleteLoading(id, false);
         showErrorToast("Failed to delete employee. Please try again.");
     }
 };

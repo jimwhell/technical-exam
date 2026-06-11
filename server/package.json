@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "daisyui": "^5.5.23",
-        "izitoast": "^1.4.0"
+        "izitoast": "^1.4.0",
+        "sweetalert2": "^11.26.25"
     }
 }

@@ -1,8 +1,9 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import Swal from "sweetalert2";
 
 /**
- * Render the list of employees into the table body.
+ * Render the list of employees into the table body, along with their respective action buttons.
  *
  * @param {Array<object>} employees - Array of employee objects to render.
  */
@@ -146,6 +147,25 @@ export const setSubmitLoading = (isLoading) => {
     document.getElementById("submitBtn").disabled = isLoading;
 };
 
+export const setModalLoading = (isLoading) => {
+    const overlay = document.getElementById("modalLoadingOverlay");
+
+    overlay.classList.toggle("hidden", !isLoading);
+};
+
+export const setDeleteLoading = (id, isLoading) => {
+    const btn = document.querySelector(`.delete-btn[data-id="${id}"]`);
+    if (!btn) return;
+
+    btn.disabled = isLoading;
+    btn.innerHTML = isLoading
+        ? `<span class="loading loading-spinner loading-sm"></span>`
+        : `<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path fill="currentColor" d="M7.616 20q-.691 0-1.153-.462T6 18.384V6H5V5h4v-.77h6V5h4v1h-1v12.385q0 .69-.462 1.153T16.384 20zm2.192-3h1V8h-1zm3.384 0h1V8h-1z" />
+           </svg>`;
+};
+
 export const showSuccessToast = (message) => {
     iziToast.success({
         message,
@@ -162,8 +182,15 @@ export const showErrorToast = (message) => {
     });
 };
 
-export const setModalLoading = (isLoading) => {
-    const overlay = document.getElementById("modalLoadingOverlay");
+export const confirmAction = async (title, text) => {
+    const { isConfirmed } = await Swal.fire({
+        title,
+        text,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
+    });
 
-    overlay.classList.toggle("hidden", !isLoading);
+    return isConfirmed;
 };
