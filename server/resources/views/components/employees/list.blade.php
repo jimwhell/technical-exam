@@ -49,6 +49,7 @@
                             <th>Factory</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="employeesTable"></tbody>
@@ -63,25 +64,19 @@
           {{-- pagination:end --}}
 
           
-          {{-- create-modal:start --}}
-          {{-- <dialog id="createModal" class="modal">
-            <div class="modal-box">
-                <h3 class="font-bold text-lg mb-4">Add Employee</h3>
-                <div class="flex flex-col gap-3">
-                    <input id="firstname" type="text" placeholder="First name" class="input input-bordered" />
-                    <input id="lastname" type="text" placeholder="Last name" class="input input-bordered" />
-                    <input id="factory" type="text" placeholder="Factory" class="input input-bordered" />
-                    <input id="email" type="email" placeholder="Email" class="input input-bordered" />
-                    <input id="phone" type="text" placeholder="Phone" class="input input-bordered" />
-                </div>
-        <div class="modal-action">
-            <button id="cancelBtn" class="btn">Cancel</button>
-            <button id="submitBtn" class="btn btn-primary">Save</button>
-        </div>
-    </div>
-        </dialog> --}}
-        {{-- create-modal:end --}}
+       
 
 
 </div>
 {{-- list:end --}}
+
+{{-- toast:start --}}
+        <div
+        id="toast"
+        class="toast toast-bottom toast-end hidden opacity-0 pointer-events-none"
+    >
+    <div class="alert alert-success pointer-events-auto">
+        <span id="toastMessage"></span>
+    </div>
+</div>
+{{-- toast:end --}}

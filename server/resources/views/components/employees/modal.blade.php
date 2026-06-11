@@ -42,7 +42,10 @@
             {{-- actions:start --}}
             <div class="modal-action">
                 <button type="button" id="cancelBtn" class="btn">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+                <span id="submitText">Save</span>
+                <span id="submitSpinner" class="loading loading-spinner loading-sm hidden"></span>
+            </button>
             </div>
             {{-- actions:end --}}
 

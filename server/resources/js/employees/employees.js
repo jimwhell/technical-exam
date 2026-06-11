@@ -7,6 +7,8 @@ import {
     renderFactoriesDropdown,
     renderFormError,
     clearFormError,
+    showSuccess,
+    setSubmitLoading,
 } from "./ui";
 
 let debounceTimer;
@@ -40,7 +42,6 @@ const loadEmployees = async (search = "", page = 1) => {
 
 const handleCreateEmployee = async (event) => {
     event.preventDefault();
-
     clearFormError(); // Clear existing form errors upon new submissions
 
     const employeeForm = document.getElementById("employeeForm");
@@ -53,13 +54,18 @@ const handleCreateEmployee = async (event) => {
         factory_id: document.getElementById("factories-dropdown").value,
     };
 
+    setSubmitLoading(true);
+
     try {
         await createEmployee(payload);
         modal.close();
         employeeForm.reset();
+        showSuccess("Employee created successfully.");
         loadEmployees();
     } catch (error) {
         renderFormError(error);
+    } finally {
+        setSubmitLoading(false);
     }
 };
 

@@ -1,3 +1,6 @@
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
 /**
  * Render the list of employees into the table body.
  *
@@ -15,6 +18,22 @@ export const renderEmployeesList = (employees) => {
             <td class="border-2">${employee.factory}</td>
             <td class="border-2">${employee.email ?? ""}</td>
             <td class="border-2">${employee.phone ?? ""}</td>
+            <td class="border-2">
+                <div class="flex gap-2">
+                    <button class="btn btn-sm btn-ghost edit-btn" data-id="${employee.id}">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path fill="currentColor" d="m14.06 9l.94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z" />
+                        </svg>
+                    </button>
+                    <button class="btn btn-sm btn-ghost delete-btn" data-id="${employee.id}">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path fill="currentColor" d="M7.616 20q-.691 0-1.153-.462T6 18.384V6H5V5h4v-.77h6V5h4v1h-1v12.385q0 .69-.462 1.153T16.384 20zm2.192-3h1V8h-1zm3.384 0h1V8h-1z" />
+                        </svg>
+                    </button>
+                </div>
+            </td>
         </tr>
         `,
         )
@@ -116,5 +135,21 @@ export const clearFormError = () => {
     document.querySelectorAll("[id^='error-']").forEach((el) => {
         el.textContent = "";
         el.classList.add("hidden");
+    });
+};
+
+export const setSubmitLoading = (isLoading) => {
+    document.getElementById("submitText").classList.toggle("hidden", isLoading);
+    document
+        .getElementById("submitSpinner")
+        .classList.toggle("hidden", !isLoading);
+    document.getElementById("submitBtn").disabled = isLoading;
+};
+
+export const showSuccess = (message) => {
+    iziToast.success({
+        message,
+        position: "bottomRight",
+        timeout: 2000,
     });
 };
