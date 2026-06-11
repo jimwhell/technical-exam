@@ -58,3 +58,13 @@ export const getFactoriesDropdown = async () => {
     if (!response.ok) throw new Error(response.statusText);
     return response.json();
 };
+
+export const deleteEmployee = async (id) => {
+    const response = await fetch(`/api/employees/${id}`, {
+        method: "DELETE",
+    });
+
+    if (!response.ok) throw new Error(response.statusText);
+
+    return response.json();
+};

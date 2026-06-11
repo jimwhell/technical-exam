@@ -12,7 +12,7 @@
         <div class="relative">
 
             {{-- loading-overlay:start --}}
-        <div id="modalLoadingOverlay" class="hidden absolute inset-0 bg-base-200 z-10 flex items-center justify-center">
+        <div id="modalLoadingOverlay" class="hidden absolute inset-0  z-10 flex items-center justify-center">
                 <span class="loading loading-spinner loading-lg"></span>
             </div>
             {{-- loading-overlay:end --}}

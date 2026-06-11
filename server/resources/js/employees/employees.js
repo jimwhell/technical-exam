@@ -4,6 +4,7 @@ import {
     createEmployee,
     updateEmployee,
     getFactoriesDropdown,
+    deleteEmployee,
 } from "./api";
 import {
     renderEmployeesList,
@@ -135,6 +136,18 @@ const handleSubmitEmployee = async (event) => {
         renderFormError(error);
     } finally {
         setSubmitLoading(false);
+    }
+};
+
+const handleDeleteEmployee = async (id) => {
+    if (!confirm("Are you sure you want to delete this employee?")) return;
+
+    try {
+        await deleteEmployee(id);
+        showSuccessToast("Employee deleted successfully.");
+        loadEmployees(currentSearch, currentPage);
+    } catch {
+        showErrorToast("Failed to delete employee. Please try again.");
     }
 };
 
