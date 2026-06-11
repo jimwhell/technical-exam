@@ -47,8 +47,11 @@ export const renderEmployeesList = (employees) => {
 export const renderEmptyState = () => {
     document.getElementById("employeesTable").innerHTML = `
         <tr>
-            <td colspan="5" class="text-center py-16 text-base-content/50">
-                No employees found.
+            <td colspan="6" class="p-0">
+                <div class="flex flex-col items-center justify-center min-h-96 text-base-content/50">
+                    <span class="text-lg font-medium">No employees found</span>
+                    <span class="text-sm">Try adjusting your search.</span>
+                </div>
             </td>
         </tr>
     `;
@@ -62,8 +65,28 @@ export const renderEmptyState = () => {
 export const renderErrorState = (message) => {
     document.getElementById("employeesTable").innerHTML = `
         <tr>
-            <td colspan="5" class="text-center py-16 text-base-content/50">
-                ${message}
+            <td colspan="6" class="p-0">
+                <div class="flex flex-col items-center justify-center min-h-96 text-error gap-2">
+
+                    <!-- error-svg:start -->
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        class="w-6 h-6"
+                    >
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path fill="currentColor"
+                            d="M12.713 16.713Q13 16.425 13 16t-.288-.712T12 15t-.712.288T11 16t.288.713T12 17t.713-.288M11 13h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                        />
+                    </svg>
+                    <!-- error-svg:end -->
+
+                    <!-- message:start -->
+                    <span class="text-base font-medium">
+                        ${message}
+                    </span>
+                    <!-- message:end -->
+                </div>
             </td>
         </tr>
     `;
@@ -103,14 +126,6 @@ export const renderFactoriesDropdown = (factories) => {
     });
 };
 
-const fieldErrorMessages = {
-    firstname: "Please enter a valid first name.",
-    lastname: "Please enter a valid last name.",
-    factory_id: "Please assign a factory.",
-    email: "Please enter a valid email address.",
-    phone: "Please enter a valid phone number.",
-};
-
 /**
  * Render form errors — inline per field for validation errors, general for server errors.
  *
@@ -120,11 +135,10 @@ export const renderFormError = (error) => {
     if (error.status === 422 && error.errors) {
         Object.keys(error.errors).forEach((field) => {
             const el = document.getElementById(`error-${field}`);
-            if (el) {
-                el.textContent =
-                    fieldErrorMessages[field] ?? error.errors[field][0];
-                el.classList.remove("hidden");
-            }
+            if (!el) return;
+
+            el.textContent = error.errors[field][0];
+            el.classList.remove("hidden");
         });
     } else {
         const el = document.getElementById("error-general");

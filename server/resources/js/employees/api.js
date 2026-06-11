@@ -3,6 +3,7 @@ const getCsrfToken = () =>
 
 const headers = {
     "Content-Type": "application/json",
+    Accept: "application/json",
     "X-CSRF-TOKEN": getCsrfToken(),
 };
 
@@ -43,8 +44,9 @@ export const createEmployee = async (payload) => {
     });
 
     if (!response.ok) {
-        const { errors } = await response.json();
-        throw { status: response.status, errors };
+        const body = await response.json();
+        console.log(body);
+        throw { status: response.status, errors: body.errors ?? null };
     }
 
     return response.json();

@@ -20,6 +20,8 @@ class EmployeeController extends Controller
             ->when($request->search, fn ($query) => $query->search($request->search))
             ->paginate(10);
 
+        dd();
+
         return EmployeeResource::collection($employees);
 
     }

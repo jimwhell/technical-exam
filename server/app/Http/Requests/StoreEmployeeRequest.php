@@ -23,11 +23,20 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'regex:/^[a-zA-Z\s\-]+$/', 'max:255'],
+            'lastname' => ['required', 'string', 'regex:/^[a-zA-Z\s\-]+$/', 'max:255'],
             'factory_id' => ['required', 'exists:factories,id'],
             'email' => ['nullable', 'email', 'max:255', 'unique:employees'],
-            'phone' => ['nullable', 'string', 'max:255'],
+            'phone' => ['nullable', 'regex:/^[0-9\+\-\(\)\s]+$/', 'max:255'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'firstname.regex' => 'First name must only contain letters, spaces, and hyphens.',
+            'lastname.regex' => 'Last name must only contain letters, spaces, and hyphens.',
+            'phone.regex' => 'Phone number must only contain digits, spaces, and the characters + - ( ).',
         ];
     }
 }

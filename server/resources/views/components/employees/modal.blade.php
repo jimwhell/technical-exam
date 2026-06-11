@@ -68,8 +68,12 @@
 
     </div>
 
+    {{-- close-button:start --}}
     <form method="dialog" class="modal-backdrop">
         <button>close</button>
     </form>
+    {{-- close-button:end --}}
+
+
 </dialog>
 {{-- modal:end --}}

@@ -24,11 +24,20 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstname' => ['sometimes', 'required', 'string', 'max:255'],
-            'lastname' => ['sometimes', 'required', 'string', 'max:255'],
+            'firstname' => ['sometimes', 'required', 'string', 'regex:/^[a-zA-Z\s\-]+$/', 'max:255'],
+            'lastname' => ['sometimes', 'required', 'string', 'regex:/^[a-zA-Z\s\-]+$/', 'max:255'],
             'factory_id' => ['sometimes', 'required', 'exists:factories,id'],
             'email' => ['sometimes', 'nullable', 'email', 'max:255', Rule::unique('employees', 'email')->ignore($this->route('employee'))],
-            'phone' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'phone' => ['sometimes', 'nullable', 'regex:/^[0-9\+\-\(\)\s]+$/', 'max:255'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'firstname.regex' => 'First name must only contain letters, spaces, and hyphens.',
+            'lastname.regex' => 'Last name must only contain letters, spaces, and hyphens.',
+            'phone.regex' => 'Phone number must only contain digits, spaces, and the characters + - ( ).',
         ];
     }
 }
