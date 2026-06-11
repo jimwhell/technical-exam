@@ -90,4 +90,14 @@ class FactoryController extends Controller
         ], 200);
 
     }
+
+    /**
+     * Returns a dropdown list consisting of factories.
+     */
+    public function dropdown()
+    {
+        $factories = Factory::select('id', 'factory_name')->orderBy('factory_name')->get();
+
+        return response()->json(['data' => $factories], 200);
+    }
 }
