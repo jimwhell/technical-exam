@@ -1,3 +1,11 @@
+const getCsrfToken = () =>
+    document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+const headers = {
+    "Content-Type": "application/json",
+    "X-CSRF-TOKEN": getCsrfToken(),
+};
+
 /**
  * Fetch paginated employees from the API.
  *
@@ -8,6 +16,7 @@
 export const getEmployees = async (search = "", page = 1) => {
     const response = await fetch(
         `/api/employees?page=${page}&search=${search}`,
+        { credentials: "include" },
     );
 
     if (!response.ok) throw new Error(response.statusText);
@@ -16,7 +25,9 @@ export const getEmployees = async (search = "", page = 1) => {
 };
 
 export const getEmployee = async (id) => {
-    const response = await fetch(`/api/employees/${id}`);
+    const response = await fetch(`/api/employees/${id}`, {
+        credentials: "include",
+    });
 
     if (!response.ok) throw new Error(response.statusText);
 
@@ -26,7 +37,8 @@ export const getEmployee = async (id) => {
 export const createEmployee = async (payload) => {
     const response = await fetch("/api/employees", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
+        credentials: "include",
         body: JSON.stringify(payload),
     });
 
@@ -41,7 +53,8 @@ export const createEmployee = async (payload) => {
 export const updateEmployee = async (id, payload) => {
     const response = await fetch(`/api/employees/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers,
+        credentials: "include",
         body: JSON.stringify(payload),
     });
 
@@ -54,14 +67,20 @@ export const updateEmployee = async (id, payload) => {
 };
 
 export const getFactoriesDropdown = async () => {
-    const response = await fetch("/api/factories/dropdown");
+    const response = await fetch("/api/factories/dropdown", {
+        credentials: "include",
+    });
+
     if (!response.ok) throw new Error(response.statusText);
+
     return response.json();
 };
 
 export const deleteEmployee = async (id) => {
     const response = await fetch(`/api/employees/${id}`, {
         method: "DELETE",
+        headers,
+        credentials: "include",
     });
 
     if (!response.ok) throw new Error(response.statusText);
