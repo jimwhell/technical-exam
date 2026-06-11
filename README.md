@@ -1,3 +1,9 @@
+## Tech Stack
+- **Backend:** Laravel 11, PHP, MySQL
+- **Frontend:** Blade templates, Vanilla JavaScript (ES2020+)
+- **Auth:** Laravel Breeze
+- **Build Tool:** Vite (via Laravel Vite plugin)
+
 ### Setup
  
 1. Clone the repository and navigate into the project folder:
