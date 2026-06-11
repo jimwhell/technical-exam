@@ -99,6 +99,9 @@ const openEditModal = async (id) => {
     }
 };
 
+/**
+ * Close the modal and reset the form state.
+ */
 const closeModal = () => {
     modal.close();
     document.getElementById("employeeForm").reset();
@@ -142,6 +145,11 @@ const handleSubmitEmployee = async (event) => {
     }
 };
 
+/**
+ * Prompts for confirmation then delete an employee by ID.
+ *
+ * @param {number} id - Employee ID to delete.
+ */
 const handleDeleteEmployee = async (id) => {
     const confirmed = await confirmAction(
         "Delete Employee?",
@@ -176,7 +184,7 @@ const attachPaginationListeners = (search) => {
 };
 
 /**
- * Toggle the loading spinner visibility.
+ * Toggles the employee table loading spinner visibility.
  *
  * @param {boolean} isLoading - Whether the loading state is active.
  */

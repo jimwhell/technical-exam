@@ -25,6 +25,12 @@ export const getEmployees = async (search = "", page = 1) => {
     return response.json();
 };
 
+/**
+ * Fetch a single employee by ID.
+ *
+ * @param {number} id - Employee ID.
+ * @returns {Promise<object>} Employee record.
+ */
 export const getEmployee = async (id) => {
     const response = await fetch(`/api/employees/${id}`, {
         credentials: "include",
@@ -35,6 +41,13 @@ export const getEmployee = async (id) => {
     return response.json();
 };
 
+/**
+ * Create a new employee.
+ * Throws with validation errors if the server returns 422.
+ *
+ * @param {object} payload - Employee fields (firstname, lastname, email, phone, factory_id).
+ * @returns {Promise<object>} Newly created employee.
+ */
 export const createEmployee = async (payload) => {
     const response = await fetch("/api/employees", {
         method: "POST",
@@ -45,13 +58,20 @@ export const createEmployee = async (payload) => {
 
     if (!response.ok) {
         const body = await response.json();
-        console.log(body);
         throw { status: response.status, errors: body.errors ?? null };
     }
 
     return response.json();
 };
 
+/**
+ * Update an existing employee by ID.
+ * Throws with validation errors if the server returns 422.
+ *
+ * @param {number} id - Employee ID to update.
+ * @param {object} payload - Fields to update.
+ * @returns {Promise<object>} Updated employee.
+ */
 export const updateEmployee = async (id, payload) => {
     const response = await fetch(`/api/employees/${id}`, {
         method: "PUT",
@@ -68,6 +88,11 @@ export const updateEmployee = async (id, payload) => {
     return response.json();
 };
 
+/**
+ * Fetch the list of factories formatted for a dropdown.
+ *
+ * @returns {Promise<object[]>} Array of factory options (id + factory_name).
+ */
 export const getFactoriesDropdown = async () => {
     const response = await fetch("/api/factories/dropdown", {
         credentials: "include",
@@ -78,6 +103,12 @@ export const getFactoriesDropdown = async () => {
     return response.json();
 };
 
+/**
+ * Delete an employee by ID.
+ *
+ * @param {number} id - Employee ID to delete.
+ * @returns {Promise<object>} Deletion confirmation response.
+ */
 export const deleteEmployee = async (id) => {
     const response = await fetch(`/api/employees/${id}`, {
         method: "DELETE",

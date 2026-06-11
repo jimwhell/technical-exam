@@ -16,18 +16,17 @@
 
         {{-- create-employee-btn:start --}}
         <button
-        id="addEmployee"
-        type="button"
-        class="px-4 py-2 rounded flex items-center gap-2 text-black"
+            id="addEmployee"
+            type="button"
+            class="px-4 py-2 rounded flex items-center gap-2 bg-gray-800 text-gray-50 hover:bg-gray-700"
         >
-        <span>Add employee</span>
-        <svg 
-            class="w-6 h-6"
-            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path fill="currentColor" d="M11.5 12.5H6v-1h5.5V6h1v5.5H18v1h-5.5V18h-1z" />
-        </svg>
-
+            <span>Add employee</span>
+            <svg
+                class="w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path fill="currentColor" d="M11.5 12.5H6v-1h5.5V6h1v5.5H18v1h-5.5V18h-1z" />
+            </svg>
         </button>
         {{-- create-employee-btn:end --}}
    </div>           
@@ -36,7 +35,7 @@
             <div class="relative overflow-x-auto rounded-box border border-base-content/5 bg-base-100 min-h-96">
                 
                 {{-- spinner overlay:start --}}
-                <div id="spinner" class="absolute inset-0 flex items-center justify-center bg-base-100/80 z-10">
+                <div id="spinner" class="absolute inset-0 flex items-center justify-center bg-base-100 z-10">
                     <span class="loading loading-spinner loading-lg"></span>
                 </div>
                 {{-- spinner overlay:end --}}

@@ -23,6 +23,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'firstname' => ['sometimes', 'required', 'string', 'regex:/^[a-zA-Z\s\-]+$/', 'max:255'],
             'lastname' => ['sometimes', 'required', 'string', 'regex:/^[a-zA-Z\s\-]+$/', 'max:255'],

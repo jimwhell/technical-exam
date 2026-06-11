@@ -12,7 +12,7 @@
         <div class="relative">
 
             {{-- loading-overlay:start --}}
-        <div id="modalLoadingOverlay" class="hidden absolute inset-0  z-10 flex items-center justify-center">
+        <div id="modalLoadingOverlay" class="hidden absolute inset-0 bg-base-100 z-10 flex items-center justify-center">
                 <span class="loading loading-spinner loading-lg"></span>
             </div>
             {{-- loading-overlay:end --}}
@@ -53,11 +53,11 @@
                 {{-- general-error:end --}}
 
                 {{-- actions:start --}}
-                <div class="modal-action">
-                    <button type="button" id="cancelBtn" class="btn">Cancel</button>
-                    <button type="submit" id="submitBtn" class="btn btn-primary">
-                        <span id="submitText">Save</span>
-                        <span id="submitSpinner" class="loading loading-spinner loading-sm hidden"></span>
+                <div class="modal-action flex gap-4 items-center">
+                    <button type="button" id="cancelBtn" class="rounded p-2 border border-gray-300 text-gray-500 hover:bg-gray-100">Cancel</button>
+                    <button type="submit" id="submitBtn" class="rounded p-2 border border-transparent bg-gray-800 text-gray-50 hover:bg-gray-700">
+                    <span id="submitText">Save</span>
+                    <span id="submitSpinner" class="loading loading-spinner loading-sm hidden"></span>
                     </button>
                 </div>
                 {{-- actions:end --}}

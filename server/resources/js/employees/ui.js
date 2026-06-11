@@ -50,7 +50,6 @@ export const renderEmptyState = () => {
             <td colspan="6" class="p-0">
                 <div class="flex flex-col items-center justify-center min-h-96 text-base-content/50">
                     <span class="text-lg font-medium">No employees found</span>
-                    <span class="text-sm">Try adjusting your search.</span>
                 </div>
             </td>
         </tr>
@@ -112,12 +111,22 @@ export const renderPagination = (meta) => {
 
     for (let page = 1; page <= last_page; page++) {
         const isActive = page === current_page ? "btn-active" : "";
-        buttons += `<button class="join-item btn ${isActive} p-4 text-black" data-page="${page}">${page}</button>`;
+        const activeClass = isActive
+            ? "bg-black text-white"
+            : "bg-white text-black border border-gray-300";
+        buttons += `<button class="join-item btn ${activeClass} p-4 hover:bg-gray-100 border-none" data-page="${page}">${page}</button>`;
     }
 
     paginationEl.innerHTML = buttons;
 };
 
+/**
+ * Populate the factories dropdown with options from the API.
+ *
+ * @param {Array<object>} factories - Array of factory objects.
+ * @param {number} factories[].id - Factory ID used as the option value.
+ * @param {string} factories[].factory_name - Factory name used as the option label.
+ */
 export const renderFactoriesDropdown = (factories) => {
     const select = document.getElementById("factories-dropdown");
 
@@ -150,7 +159,7 @@ export const renderFormError = (error) => {
 };
 
 /**
- * Clear all form errors.
+ * Clears all form errors.
  */
 export const clearFormError = () => {
     document.querySelectorAll("[id^='error-']").forEach((el) => {
@@ -159,6 +168,11 @@ export const clearFormError = () => {
     });
 };
 
+/**
+ * Toggle the submit button loading state, showing a spinner and disabling the button.
+ *
+ * @param {boolean} isLoading - Whether the submit is in progress.
+ */
 export const setSubmitLoading = (isLoading) => {
     document.getElementById("submitText").classList.toggle("hidden", isLoading);
     document
@@ -202,6 +216,13 @@ export const showErrorToast = (message) => {
     });
 };
 
+/**
+ * Show a confirmation dialog for user actions and return whether the user confirmed.
+ *
+ * @param {string} title - Dialog title.
+ * @param {string} text - Dialog body text.
+ * @returns {Promise<boolean>} Resolves to true if confirmed, false if cancelled.
+ */
 export const confirmAction = async (title, text) => {
     const { isConfirmed } = await Swal.fire({
         title,
