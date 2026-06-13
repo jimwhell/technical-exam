@@ -1,3 +1,10 @@
+## Note
+
+For **Part 2**, I chose the **Employees** list as the target for the async-driven frontend enhancements, covering all three functional requirements: dynamic list loading, live search with debounce, and create/edit/delete without leaving the page.
+
+Laravel Breeze was used as the authentication starter kit as required by Part 1. Although Breeze ships with Alpine.js by default, it was **not used** in the Part 2 implementation. All async behavior was built entirely in **vanilla JavaScript  organized across three modules — `api.js`, `ui.js`, and `employees.js` (the main entry module).
+
+
 ## Tech Stack
 - **Backend:** Laravel 11, PHP, MySQL
 - **Frontend:** Blade templates, Vanilla JavaScript (ES2020+)
